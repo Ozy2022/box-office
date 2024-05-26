@@ -1,6 +1,5 @@
 const Starred = () => {
-    return <div>Starred page</div>;
-  };
-  
-  export default Starred;
-  
+  return <div>Starred</div>;
+};
+
+export default Starred;
