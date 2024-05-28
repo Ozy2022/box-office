@@ -2,8 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Starred from './pages/Starred';
 import MainLayout from './components/MainLayout';
-
 import Show from './pages/Show';
+
+// these 3 are repersnting a components life time
+// mounts
+// rerender
+// ummounts
 function App() {
   return (
     <BrowserRouter>
