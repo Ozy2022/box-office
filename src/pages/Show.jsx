@@ -1,29 +1,41 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getShowById } from '../api/tvmaze';
+import { useQuery } from '@tanstack/react-query';
 
-const useShowById = showId => {
-  const [showData, setShowData] = useState(null);
-  const [showError, setShowError] = useState(null);
+//#1 fetch show data solution by useEffect() logic
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getShowById(showId);
-        setShowData(data);
-      } catch (err) {
-        setShowError(err);
-      }
-    }
-    fetchData();
-  }, [showId]);
+// const useShowById = showId => {
+//   const [showData, setShowData] = useState(null);
+//   const [showError, setShowError] = useState(null);
 
-  return [showData, showError];
-};
+//   useEffect(() => {
+//     async function fetchData() {
+//       try {
+//         const data = await getShowById(showId);
+//         setShowData(data);
+//       } catch (err) {
+//         setShowError(err);
+//       }
+//     }
+//     fetchData();
+//   }, [showId]);
+
+//   return [showData, showError];
+// };
 
 const Show = () => {
   const { showId } = useParams();
-  const { showData, showError } = useShowById(showId);
+  //  1- S => const { showData, showError } = useShowById(showId);
+
+  //#2 fetch show data solution by useQuery() hook
+  //and that would avoide the repetition logic
+  //and the <React.StrictMode> fetch data 
+  //issue which would fetch the data only ones
+
+  const { data: showData, error: showError } = useQuery({
+    queryKey: ['show', showId],
+    queryFn: () => getShowById(showId),
+  });
 
   if (showError) {
     return <div>We have an error: {showError.message}</div>;
