@@ -29,7 +29,7 @@ const Show = () => {
 
   //#2 fetch show data solution by useQuery() hook
   //and that would avoide the repetition logic
-  //and the <React.StrictMode> fetch data 
+  //and the <React.StrictMode> fetch data
   //issue which would fetch the data only ones
 
   const { data: showData, error: showError } = useQuery({
