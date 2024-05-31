@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getShowById } from '../api/tvmaze';
 import { useQuery } from '@tanstack/react-query';
 import Details from '../components/shows/Details';
@@ -18,9 +18,12 @@ const Show = () => {
     return <div>We have an error: {showError.message}</div>;
   }
 
+
   if (showData) {
     return (
       <div>
+        <Link to="/">Go back to home page</Link>
+
         <ShowMainData
           image={showData.image}
           name={showData.name}
@@ -44,7 +47,7 @@ const Show = () => {
         </div>
         <div>
           <h2>Cast</h2>
-          <Cast cast={showData._embedded.cast}/>
+          <Cast cast={showData._embedded.cast} />
         </div>
       </div>
     );
