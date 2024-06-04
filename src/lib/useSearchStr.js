@@ -9,7 +9,7 @@ const usePersistedState = (initialState, sessionStorageKey) => {
 
   useEffect(() => {
     sessionStorage.setItem(sessionStorageKey, JSON.stringify(state));
-  }, [state, setState]);
+  }, [state, sessionStorageKey]);
 
   return [state, setState];
 };
